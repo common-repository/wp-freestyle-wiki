@@ -1,0 +1,36 @@
+== How to upgrade the FreeStyle Wiki ==
+
+FSWIKI_VERSION=3_6_4
+
+wget wiki${FSWIKI_VERSION}.zip
+
+unzip wiki${FSWIKI_VERSION}.zip
+cd wiki${FSWIKI_VERSION}
+
+# setup directory
+sh setup.sh
+
+# remove files
+rm docs -rf
+rm theme/blue_pipe -rf
+rm theme/ktai -rf
+
+# configuration
+perl -pi -e 's|^(auto_keyword_page=).*|${1}0|' config/config.dat
+
+# add access limit
+cat < '_EOF_' > .htaccess
+DirectoryIndex wiki.cgi
+
+#<FilesMatch "\.(pm|dat|wiki|log)$>
+#   deny from all
+#</FilesMatch>
+
+deny from all
+_EOF_
+
+cd ..
+
+mv fswiki fswiki.`date -I`
+mv wiki${FSWIKI_VERSION} fswiki
+

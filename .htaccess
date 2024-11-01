@@ -1,0 +1,3 @@
+<FilesMatch "(process_wiki.pl|\.txt)$>
+   deny from all
+</FilesMatch>

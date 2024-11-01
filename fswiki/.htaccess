@@ -1,0 +1,7 @@
+DirectoryIndex wiki.cgi
+
+#<FilesMatch "\.(pm|dat|wiki|log)$>
+#   deny from all
+#</FilesMatch>
+
+deny from all
